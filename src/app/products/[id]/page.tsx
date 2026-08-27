@@ -6,9 +6,10 @@ import { Product } from "@/types/product";
 export default async function ProductDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const productId = parseInt(params.id, 10);
+  const { id } = await params;
+  const productId = parseInt(id, 10);
   let product: Product | null = null;
   let error: string | null = null;
 
